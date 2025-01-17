@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @onready var anim_sprite = $AnimatedSprite2D
+@onready var pistol = $gun_pos/pistol
 
 var speed = 300.0
 var hp = 100
@@ -22,5 +23,8 @@ func _physics_process(delta):
 		anim_sprite.flip_h = true
 	else:
 		anim_sprite.flip_h = false
+		
+	if Input.is_action_just_pressed("shoot"):
+		pistol.shoot()
 
 	move_and_slide()

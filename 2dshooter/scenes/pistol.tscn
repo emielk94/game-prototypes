@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://clgka2lucmrr4"]
+
+[ext_resource type="Texture2D" uid="uid://b8l5qfjpsl554" path="res://assets/img/weapons.png" id="1_4ussw"]
+[ext_resource type="Script" path="res://pistol.gd" id="1_xrjp3"]
+[ext_resource type="AudioStream" uid="uid://karke5brg181" path="res://scripts/gunshot.ogg" id="2_unh7o"]
+
+[node name="pistol" type="Node2D"]
+script = ExtResource("1_xrjp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4ussw")
+region_enabled = true
+region_rect = Rect2(0, 116.573, 12.7422, 11.4272)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_unh7o")
