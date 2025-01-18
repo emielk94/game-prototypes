@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cyknqur3haio3"]
+
+[ext_resource type="Script" path="res://scenes/ogre.gd" id="1_2kaip"]
+[ext_resource type="Texture2D" uid="uid://bthyltojri1es" path="res://assets/sprites/enemies/ogre/Ogre_walk.png" id="1_y76j6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whk1l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql34o"]
+atlas = ExtResource("1_y76j6")
+region = Rect2(0, 67, 64, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd4v4"]
+atlas = ExtResource("1_y76j6")
+region = Rect2(64, 67, 64, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uokyo"]
+atlas = ExtResource("1_y76j6")
+region = Rect2(128, 67, 64, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcefs"]
+atlas = ExtResource("1_y76j6")
+region = Rect2(192, 67, 64, 62)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5eypy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql34o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd4v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uokyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcefs")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="ogre" type="CharacterBody2D"]
+script = ExtResource("1_2kaip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_whk1l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5eypy")
+animation = &"walk"
+autoplay = "walk"
