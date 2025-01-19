@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b8l5qfjpsl554" path="res://assets/img/weapons.png" id="1_4ussw"]
 [ext_resource type="Script" path="res://pistol.gd" id="1_xrjp3"]
-[ext_resource type="AudioStream" uid="uid://karke5brg181" path="res://scripts/gunshot.ogg" id="2_unh7o"]
+[ext_resource type="AudioStream" uid="uid://karke5brg181" path="res://sfx/gunshot.ogg" id="2_unh7o"]
 
 [node name="pistol" type="Node2D"]
 script = ExtResource("1_xrjp3")
