@@ -28,3 +28,6 @@ func _physics_process(delta):
 		gun.shoot()
 
 	move_and_slide()
+
+func take_damage(damage):
+	hp -= damage

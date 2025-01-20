@@ -1,9 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyknqur3haio3"]
+[gd_scene load_steps=19 format=3 uid="uid://cyknqur3haio3"]
 
 [ext_resource type="Script" path="res://scenes/ogre.gd" id="1_2kaip"]
 [ext_resource type="Texture2D" uid="uid://bthyltojri1es" path="res://assets/sprites/enemies/ogre/Ogre_walk.png" id="1_y76j6"]
+[ext_resource type="Texture2D" uid="uid://c1tgl248k0rq2" path="res://assets/sprites/enemies/ogre/Ogre_attack.png" id="2_s184o"]
+[ext_resource type="Script" path="res://scenes/finite_state_machine.gd" id="4_ad2vk"]
+[ext_resource type="Script" path="res://scenes/follow.gd" id="5_3tkxh"]
+[ext_resource type="Script" path="res://scenes/attack.gd" id="6_qd6wt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whk1l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quo4b"]
+atlas = ExtResource("2_s184o")
+region = Rect2(0, 128, 128, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyvbn"]
+atlas = ExtResource("2_s184o")
+region = Rect2(128, 128, 128, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moe8u"]
+atlas = ExtResource("2_s184o")
+region = Rect2(256, 128, 128, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly6y3"]
+atlas = ExtResource("2_s184o")
+region = Rect2(384, 128, 128, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pcvk"]
+atlas = ExtResource("2_s184o")
+region = Rect2(512, 128, 128, 127)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ql34o"]
 atlas = ExtResource("1_y76j6")
@@ -25,6 +49,26 @@ region = Rect2(192, 67, 64, 62)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_quo4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyvbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moe8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ly6y3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pcvk")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ql34o")
 }, {
 "duration": 1.0,
@@ -41,6 +85,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ohyq"]
+size = Vector2(24, 44)
+
 [node name="ogre" type="CharacterBody2D"]
 script = ExtResource("1_2kaip")
 
@@ -49,5 +96,30 @@ shape = SubResource("RectangleShape2D_whk1l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5eypy")
-animation = &"walk"
+animation = &"attack"
 autoplay = "walk"
+
+[node name="FiniteStateMachine" type="Node2D" parent="."]
+script = ExtResource("4_ad2vk")
+
+[node name="Follow" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("5_3tkxh")
+
+[node name="Attack" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("6_qd6wt")
+
+[node name="debug" type="Label" parent="."]
+offset_left = -23.0
+offset_top = -50.0
+offset_right = 26.0
+offset_bottom = -27.0
+text = "debug"
+
+[node name="melee_hitbox" type="Area2D" parent="."]
+position = Vector2(-29, -4)
+
+[node name="melee_collision" type="CollisionShape2D" parent="melee_hitbox"]
+position = Vector2(2, 9)
+shape = SubResource("RectangleShape2D_5ohyq")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
