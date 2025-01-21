@@ -15,12 +15,12 @@ func _process(delta):
 	if direction.x < 0:
 		if not already_flipped:
 			sprite.flip_h = false
-			melee_collision.position.x *= -1
+			melee_hitbox.position.x *= -1
 			already_flipped = true
 	else:
 		if already_flipped:
 			sprite.flip_h = true
-			melee_collision.position.x *= -1
+			melee_hitbox.position.x *= -1
 			already_flipped = false
 		
 func _physics_process(delta):
@@ -30,9 +30,14 @@ func _physics_process(delta):
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 		if sprite.animation == "attack":
-		#sprite.play("attack") # Replace with function body.
+			if direction.length() < 30:  
+				sprite.play("attack")
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if sprite.animation == "attack":
+		if sprite.frame == 3:
 			for body in melee_hitbox.get_overlapping_bodies():
 				if body.name == "player":
-					body.take_damage(10) # Replace with function body.
-			if direction.length() < 30:  # Replace with your damage logic
-				sprite.play("attack")
+					body.take_damage(10)
+			

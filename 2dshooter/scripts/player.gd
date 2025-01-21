@@ -31,3 +31,4 @@ func _physics_process(delta):
 
 func take_damage(damage):
 	hp -= damage
+	print(hp)

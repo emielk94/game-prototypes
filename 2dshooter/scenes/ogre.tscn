@@ -89,6 +89,8 @@ animations = [{
 size = Vector2(24, 44)
 
 [node name="ogre" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_2kaip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -123,3 +125,4 @@ position = Vector2(2, 9)
 shape = SubResource("RectangleShape2D_5ohyq")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
