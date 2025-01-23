@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var melee_hitbox = $melee_hitbox
 @onready var melee_collision = $melee_hitbox/melee_collision
 
+var hp = 100
 var direction : Vector2
 var already_flipped = true
 
@@ -40,4 +41,8 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 			for body in melee_hitbox.get_overlapping_bodies():
 				if body.name == "player":
 					body.take_damage(10)
-			
+
+func take_damage(damage):
+	hp -= damage
+	if hp <= 0:
+		queue_free()

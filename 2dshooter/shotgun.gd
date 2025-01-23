@@ -51,8 +51,7 @@ func shoot():
 			if raycast.is_colliding():
 				var collider = raycast.get_collider()
 				if collider && collider.is_in_group("enemies"):
-					pass
-					#collider.take_damage(damage, direction, knockback_str)
+					collider.take_damage(damage)
 
 
 func _on_fire_cd_timer_timeout():
