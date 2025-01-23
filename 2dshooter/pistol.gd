@@ -7,7 +7,7 @@ extends Gun
 func _ready():
 	draw_offset = 20 # Replace with function body.
 	range = 1000
-	damage = 20
+	damage = 5
 	knockback_str = 10
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,5 +35,5 @@ func shoot():
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
 		if collider && collider.is_in_group("enemies"):
-			collider.take_damage(20)
-			collider.apply_knockback(direction, knockback_str)
+			collider.take_damage(damage)
+			#collider.apply_knockback(direction, knockback_str)

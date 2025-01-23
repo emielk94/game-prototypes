@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 @onready var melee_hitbox = $melee_hitbox
 @onready var melee_collision = $melee_hitbox/melee_collision
+@onready var damage_numbers_origin = $DamageNumbersOrigin
 
 var hp = 100
 var direction : Vector2
@@ -44,5 +45,6 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 
 func take_damage(damage):
 	hp -= damage
+	DamageNumbers.display_number(damage, damage_numbers_origin.global_position)
 	if hp <= 0:
 		queue_free()

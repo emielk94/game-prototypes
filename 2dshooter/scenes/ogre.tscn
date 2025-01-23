@@ -7,8 +7,6 @@
 [ext_resource type="Script" path="res://scenes/follow.gd" id="5_3tkxh"]
 [ext_resource type="Script" path="res://scenes/attack.gd" id="6_qd6wt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_whk1l"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_quo4b"]
 atlas = ExtResource("2_s184o")
 region = Rect2(0, 128, 128, 127)
@@ -85,6 +83,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whk1l"]
+size = Vector2(36, 50)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ohyq"]
 size = Vector2(24, 44)
 
@@ -93,13 +94,14 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_2kaip")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_whk1l")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5eypy")
 animation = &"attack"
 autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 6)
+shape = SubResource("RectangleShape2D_whk1l")
 
 [node name="FiniteStateMachine" type="Node2D" parent="."]
 script = ExtResource("4_ad2vk")
@@ -123,6 +125,9 @@ position = Vector2(-29, -4)
 [node name="melee_collision" type="CollisionShape2D" parent="melee_hitbox"]
 position = Vector2(2, 9)
 shape = SubResource("RectangleShape2D_5ohyq")
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+position = Vector2(-1, -24)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
