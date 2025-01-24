@@ -8,7 +8,7 @@ func _ready():
 	draw_offset = 20 # Replace with function body.
 	range = 1000
 	damage = 5
-	knockback_str = 10
+	knockback_str = 1000
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var mouse_pos = get_global_mouse_position()
@@ -36,4 +36,5 @@ func shoot():
 		var collider = raycast.get_collider()
 		if collider && collider.is_in_group("enemies"):
 			collider.take_damage(damage)
+			collider.knockback_force = 100
 			#collider.apply_knockback(direction, knockback_str)

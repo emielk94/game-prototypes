@@ -9,6 +9,8 @@ extends CharacterBody2D
 var hp = 100
 var direction : Vector2
 var already_flipped = true
+var knockback_force = 0
+var knockback_decay_speed = 30
 
 func _process(delta):
 	if player:
@@ -26,7 +28,11 @@ func _process(delta):
 			already_flipped = false
 		
 func _physics_process(delta):
-	velocity = direction.normalized() * 40
+	if knockback_force <= 0:
+		velocity = direction.normalized() * 40
+	else:
+		velocity = -direction.normalized() * knockback_force
+		knockback_force -= knockback_decay_speed
 	move_and_collide(velocity * delta)
 
 

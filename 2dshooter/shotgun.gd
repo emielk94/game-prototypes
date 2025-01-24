@@ -9,8 +9,8 @@ var max_spread_degrees = 5
 # Called when the node enters the scene tree for the first time.
 func _ready(): # Replace with function body.
 	range = 1000
-	damage = 25
-	knockback_str = 5
+	damage = 5
+	knockback_str = 200
 	#particles.one_shot = true
 	fire_rate = 0.5
 	fire_cd_timer.wait_time = fire_rate
@@ -52,6 +52,7 @@ func shoot():
 				var collider = raycast.get_collider()
 				if collider && collider.is_in_group("enemies"):
 					collider.take_damage(damage)
+					collider.knockback_force += 150
 
 
 func _on_fire_cd_timer_timeout():
