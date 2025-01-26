@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://btubks6qtreoj"]
+[gd_scene load_steps=5 format=3 uid="uid://btubks6qtreoj"]
 
 [ext_resource type="Texture2D" uid="uid://beilk4lybaxkb" path="res://assets/img/1000_F_407541294_A8o5pW1SPNBIENxt6Jsttpw5o2NsIWRJ.jpg" id="1_34vi7"]
 [ext_resource type="PackedScene" uid="uid://dwdkmarrrbxx4" path="res://scenes/player.tscn" id="2_rcx6y"]
 [ext_resource type="PackedScene" uid="uid://cyknqur3haio3" path="res://scenes/ogre.tscn" id="3_ktg4v"]
+[ext_resource type="Script" path="res://scenes/progress_bar.gd" id="4_tihhi"]
 
 [node name="world" type="Node2D"]
 
@@ -12,7 +13,18 @@ scale = Vector2(1.472, 1.215)
 texture = ExtResource("1_34vi7")
 
 [node name="player" parent="." instance=ExtResource("2_rcx6y")]
+visible = true
 position = Vector2(595, 337)
 
 [node name="ogre" parent="." instance=ExtResource("3_ktg4v")]
 position = Vector2(156, 226)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 197.0
+offset_bottom = 32.0
+script = ExtResource("4_tihhi")
+player = NodePath("../../player")

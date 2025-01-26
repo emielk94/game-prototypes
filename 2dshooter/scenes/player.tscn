@@ -99,6 +99,7 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D"]
+visible = false
 scale = Vector2(2, 2)
 script = ExtResource("1_1rkh1")
 

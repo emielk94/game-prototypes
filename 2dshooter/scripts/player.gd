@@ -1,12 +1,15 @@
 extends CharacterBody2D
-
+class_name Player
 
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var gun = $gun_pos.get_child(0)
 
 var speed = 300.0
 var hp = 100
+var max_health = 100
 var is_dead = false
+
+signal healthChanged
 
 func _physics_process(delta):
 	var direction = Input.get_vector("left","right","up","down")
@@ -31,4 +34,5 @@ func _physics_process(delta):
 
 func take_damage(damage):
 	hp -= damage
+	healthChanged.emit()
 	print(hp)
