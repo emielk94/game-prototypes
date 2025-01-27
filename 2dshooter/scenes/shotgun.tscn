@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://upnmofu3g7r" path="res://sfx/shotgun.wav" id="3_o2o40"]
 
 [node name="shotgun" type="Node2D"]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_o4eqa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

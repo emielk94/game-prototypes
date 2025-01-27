@@ -11,6 +11,9 @@ func _ready():
 	knockback_str = 1000
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+	
+func _physics_process(delta):
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - global_position).normalized()
 	
@@ -23,9 +26,6 @@ func _process(delta):
 		sprite.flip_v = false
 	else:
 		sprite.flip_v = true
-	
-func _physics_process(delta):
-	pass
 	
 func shoot():
 	var mouse_pos = get_global_mouse_position()
