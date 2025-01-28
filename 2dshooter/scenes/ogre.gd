@@ -13,6 +13,7 @@ var knockback_force = 0
 var knockback_decay_speed = 30
 
 func _process(delta):
+	print(position)
 	if player:
 		direction = player.global_position - global_position
 	

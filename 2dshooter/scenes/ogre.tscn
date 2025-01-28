@@ -91,7 +91,7 @@ size = Vector2(24, 44)
 
 [node name="ogre" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 script = ExtResource("1_2kaip")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

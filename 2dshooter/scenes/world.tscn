@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://btubks6qtreoj"]
+[gd_scene load_steps=6 format=3 uid="uid://btubks6qtreoj"]
 
 [ext_resource type="Texture2D" uid="uid://beilk4lybaxkb" path="res://assets/img/1000_F_407541294_A8o5pW1SPNBIENxt6Jsttpw5o2NsIWRJ.jpg" id="1_34vi7"]
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_wm2p2"]
 [ext_resource type="PackedScene" uid="uid://dwdkmarrrbxx4" path="res://scenes/player.tscn" id="2_rcx6y"]
-[ext_resource type="PackedScene" uid="uid://cyknqur3haio3" path="res://scenes/ogre.tscn" id="3_ktg4v"]
 [ext_resource type="Script" path="res://scenes/progress_bar.gd" id="4_tihhi"]
+[ext_resource type="Script" path="res://scenes/spawner.gd" id="5_knagi"]
 
 [node name="world" type="Node2D"]
+script = ExtResource("1_wm2p2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(655, 328.5)
@@ -14,9 +16,6 @@ texture = ExtResource("1_34vi7")
 
 [node name="player" parent="." instance=ExtResource("2_rcx6y")]
 position = Vector2(595, 337)
-
-[node name="ogre" parent="." instance=ExtResource("3_ktg4v")]
-position = Vector2(156, 226)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -27,3 +26,6 @@ offset_right = 197.0
 offset_bottom = 32.0
 script = ExtResource("4_tihhi")
 player = NodePath("../../player")
+
+[node name="spawner" type="Node2D" parent="."]
+script = ExtResource("5_knagi")
