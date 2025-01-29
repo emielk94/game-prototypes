@@ -2,7 +2,6 @@ extends Gun
 
 @onready var sprite = $Sprite2D
 @onready var raycast = $RayCast2D
-@onready var audioplayer = $AudioStreamPlayer2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	draw_offset = 20 # Replace with function body.
@@ -21,7 +20,6 @@ func _physics_process(delta):
 	raycast.target_position = raycast.to_local(raycast_global_target)
 	
 	rotation = (mouse_pos - global_position).angle()
-	
 	if mouse_pos.x > owner.global_position.x:
 		sprite.flip_v = false
 	else:
@@ -30,7 +28,9 @@ func _physics_process(delta):
 func shoot():
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - global_position).normalized()
-	audioplayer.play()
+	#audioplayer.play()
+	#print(audioplayer.volume_db)
+	play_audio()
 	
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
@@ -38,3 +38,10 @@ func shoot():
 			collider.take_damage(damage)
 			collider.knockback_force = 100
 			#collider.apply_knockback(direction, knockback_str)
+
+func play_audio():
+	var audio_player = AudioStreamPlayer2D.new()
+	audio_player.global_position = global_position
+	audio_player.stream = preload("res://sfx/gunshot.ogg")
+	get_tree().current_scene.add_child(audio_player)
+	audio_player.play()
