@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var melee_collision = $melee_hitbox/melee_collision
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 
+var blood_scene = preload("res://scenes/blood_particles.tscn")
 var hp = 100
 var direction : Vector2
 var already_flipped = true
@@ -52,5 +53,9 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 func take_damage(damage):
 	hp -= damage
 	DamageNumbers.display_number(damage, damage_numbers_origin.global_position)
+	
 	if hp <= 0:
+		var blood_instance = blood_scene.instantiate()
+		blood_instance.global_position = global_position
+		get_tree().current_scene.add_child(blood_instance)
 		queue_free()

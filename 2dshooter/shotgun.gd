@@ -8,7 +8,7 @@ var max_spread_degrees = 5
 # Called when the node enters the scene tree for the first time.
 func _ready(): # Replace with function body.
 	range = 1000
-	damage = 5
+	damage = 15
 	knockback_str = 200
 	#particles.one_shot = true
 	fire_rate = 0.5
