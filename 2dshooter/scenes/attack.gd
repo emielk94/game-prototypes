@@ -3,6 +3,7 @@ extends State
 func enter():
 	super.enter()
 	animation_player.play("attack")
+	owner.set_physics_process(true)
 	
 func transition():
 	if !animation_player.is_playing():

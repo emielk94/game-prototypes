@@ -3,6 +3,7 @@ class_name Player
 
 var pistol = preload("res://scenes/pistol.tscn")
 var shotgun = preload("res://scenes/shotgun.tscn")
+var minigun = preload("res://scenes/minigun.tscn")
 
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var gun = $gun_pos.get_child(0)
@@ -19,6 +20,7 @@ func _ready() -> void:
 	# Add weapons to inventory
 	inventory.append(pistol)
 	inventory.append(shotgun)
+	inventory.append(minigun)
 	# Instantiate the first weapon and add it to gun_pos
 	#var new_weapon = inventory[0].instantiate()
 	#gun_pos.add_child(new_weapon)
@@ -42,12 +44,14 @@ func _physics_process(delta):
 		else:
 			anim_sprite.flip_h = false
 			
-		if Input.is_action_just_pressed("shoot"):
+		if Input.is_action_pressed("shoot"):
 			gun.shoot()
 		if Input.is_action_just_pressed("weapon_slot_1"):
 			equip_weapon(0)
 		if Input.is_action_just_pressed("weapon_slot_2"):
 			equip_weapon(1)
+		if Input.is_action_just_pressed("weapon_slot_3"):
+			equip_weapon(2)
 
 		move_and_slide()
 		
