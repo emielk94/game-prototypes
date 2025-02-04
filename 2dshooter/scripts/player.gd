@@ -8,7 +8,7 @@ var minigun = preload("res://scenes/minigun.tscn")
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var gun = $gun_pos.get_child(0)
 @onready var gun_pos = $gun_pos
-
+@onready var crosshair = $crosshair
 var speed = 300.0
 var hp = 100
 var max_health = 100
@@ -18,6 +18,7 @@ signal healthChanged
 
 func _ready() -> void:
 	# Add weapons to inventory
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	inventory.append(pistol)
 	inventory.append(shotgun)
 	inventory.append(minigun)
@@ -28,6 +29,7 @@ func _ready() -> void:
 	#gun = gun_pos.get_child(0)
 	#
 func _physics_process(delta):
+	crosshair.global_position = get_global_mouse_position()
 	if !is_dead:
 		var direction = Input.get_vector("left","right","up","down")
 		var mouse_pos = get_global_mouse_position()

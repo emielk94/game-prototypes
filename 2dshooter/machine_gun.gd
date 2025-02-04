@@ -7,10 +7,10 @@ extends Gun
 func _ready():
 	draw_offset = 20 # Replace with function body.
 	range = 1000
-	damage = 5
-	fire_rate = 0.1
+	damage = 10
+	fire_rate = 0.05
 	fire_cd.wait_time = fire_rate
-	knockback_str = 1000
+	knockback_str = 200
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -40,11 +40,12 @@ func shoot():
 			var collider = raycast.get_collider()
 			if collider && collider.is_in_group("enemies"):
 				collider.take_damage(damage)
-				collider.knockback_force = 100
+				collider.knockback_force = knockback_str
 				#collider.apply_knockback(direction, knockback_str)
 func play_audio():
 	var audio_player = AudioStreamPlayer2D.new()
 	audio_player.global_position = global_position
+	audio_player.volume_db = -20
 	audio_player.stream = preload("res://sfx/gunshot.ogg")
 	get_tree().current_scene.add_child(audio_player)
 	audio_player.play()
