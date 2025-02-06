@@ -4,6 +4,7 @@ class_name Player
 var pistol = preload("res://scenes/pistol.tscn")
 var shotgun = preload("res://scenes/shotgun.tscn")
 var minigun = preload("res://scenes/minigun.tscn")
+var blood_scene = preload("res://scenes/blood_particles.tscn")
 
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var gun = $gun_pos.get_child(0)
@@ -77,5 +78,9 @@ func take_damage(damage):
 			is_dead = true
 			anim_sprite.visible = false
 			gun.visible = false
+			var blood_instance = blood_scene.instantiate()
+			blood_instance.global_position = global_position
+			get_tree().current_scene.add_child(blood_instance)
+			
 		else:
 			healthChanged.emit()
