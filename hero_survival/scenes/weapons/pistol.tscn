@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dplrilitcllfh"]
+
+[ext_resource type="Script" path="res://scenes/weapons/pistol.gd" id="1_ojw1v"]
+[ext_resource type="Texture2D" uid="uid://b6hjkn8h20u5d" path="res://img/weapons.png" id="2_o3grm"]
+
+[node name="pistol" type="Node2D"]
+script = ExtResource("1_ojw1v")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_o3grm")
+region_enabled = true
+region_rect = Rect2(-0.65485, 116.927, 12.6878, 11.2514)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="fire_cd" type="Timer" parent="."]

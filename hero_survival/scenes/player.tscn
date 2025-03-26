@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dibxmk1uawuwl"]
+[gd_scene load_steps=18 format=3 uid="uid://dibxmk1uawuwl"]
 
 [ext_resource type="Texture2D" uid="uid://b3fctncwt34ge" path="res://sprites/player/walk.png" id="1_8fae7"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lwy3c"]
 [ext_resource type="Texture2D" uid="uid://cx0dba8ykri78" path="res://sprites/player/idle.png" id="3_gwhqn"]
+[ext_resource type="PackedScene" uid="uid://dplrilitcllfh" path="res://scenes/weapons/pistol.tscn" id="4_8wpir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erd0j"]
 size = Vector2(17, 31)
@@ -107,3 +108,7 @@ shape = SubResource("RectangleShape2D_erd0j")
 [node name="player_sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0uvfi")
 animation = &"idle"
+
+[node name="gun_pos" type="Node2D" parent="."]
+
+[node name="pistol" parent="gun_pos" instance=ExtResource("4_8wpir")]
