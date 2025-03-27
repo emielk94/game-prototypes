@@ -15,7 +15,11 @@ func _process(delta: float) -> void:
 	var offset = Vector2(gun.draw_offset, 0).rotated(angle_to_mouse)
 	
 	gun_pos.global_position = global_position + offset
+	
 	direction = Input.get_vector("left","right","up","down")
+	if Input.is_action_pressed("shoot"):
+			gun.shoot()
+			
 	var mouse_pos = get_global_mouse_position()
 	
 	if direction:

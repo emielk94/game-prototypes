@@ -14,3 +14,7 @@ region_rect = Rect2(-0.65485, 116.927, 12.6878, 11.2514)
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="fire_cd" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="fire_cd" to="." method="_on_fire_cd_timeout"]
