@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var gun = $gun_pos.get_child(0)
 
 const speed = 300.0
+var health = 100
+var is_dead = false
 var direction 
 
 func _process(delta: float) -> void:
@@ -33,3 +35,12 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		
 	move_and_slide()
+
+func take_damage(damage):
+	health -= damage
+	if damage <= 0:
+		die()
+
+func die():
+	is_dead = true
+	queue_free()
